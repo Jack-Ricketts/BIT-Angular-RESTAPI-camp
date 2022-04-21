@@ -1,0 +1,40 @@
+<div class="card">
+    <div class="card-header">Junior scout registration form</div>
+    <div class="card-body">
+        <form action="" (ngSubmit)="onSubmit(f)" #f="ngForm">
+            <div class="mb-3">
+                <label for="" class="form-label">First name</label>
+                <input type="text" id="" class="form-control" ngModel name="fName" required minlength="3" maxlength="15">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Last name</label>
+                <input type="text" id="" class="form-control" ngModel name="lName" required minlength="3" maxlength="15">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Date of birth</label >
+                <input type="number" id="" class="form-control"ngModel name="birthday" required>
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Gender</label><br>
+                <input type="radio" id="male" ngModel name="gender" value="Male">
+                <label for="male">Male</label> &nbsp;
+                <input type="radio" id="female" ngModel name="gender" value="Female">
+                <label for="female">Female</label>
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Email</label>
+                <input type="text" id="" class="form-control" ngModel name="email" required email>
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Phone</label>
+                <input type="text" id="" class="form-control" ngModel name="phone" placeholder="+37061234567" required minlength="10" maxlength="12">
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Grade</label>
+                <input type="number" id="" class="form-control" ngModel name="grade" required min="5" max="12" #grade="ngModel">
+                <span class="help-block" *ngIf="!grade.valid && grade.touched">Child must be inbetween 5th and 12th grade.</span>
+            </div>
+            <button type="submit" class="btn btn-success" [disabled]="!f.valid">Register</button>
+        </form>
+    </div>
+</div>
