@@ -1,1 +1,32 @@
-<p>wanna join a camp? press New</p>
+<div class="card">
+    <div class="card-header">
+        List of kids
+    </div>
+    <div class="card-body">
+        <div class="table">
+            <thead>
+                <tr>
+                    <th>Fist name</th>
+                    <th>Last name</th>
+                    <th>D.O.B.</th>
+                    <th>Gender</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Grade</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let registration of registrations">
+                    <td>{{ registration.fName }}</td>
+                    <td>{{ registration.lName }}</td>
+                    <td>{{ registration.birthday }}</td>
+                    <td>{{ registration.gender }}</td>
+                    <td>{{ registration.email }}</td>
+                    <td>{{ registration.phone }}</td>
+                    <td>{{ registration.grade }}</td>
+                    <td></td>
+                </tr>
+            </tbody>
+        </div>
+    </div>
+</div>
