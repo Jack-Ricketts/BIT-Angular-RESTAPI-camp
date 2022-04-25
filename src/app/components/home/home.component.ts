@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit {
 
   public registrations:Registration[]=[];
 
-  public isLoading:boolean=false;
+  public isLoading:boolean=true;
   public isError:boolean=false;
 
   constructor(private registrationService:RegistrationService) { }
