@@ -11,12 +11,22 @@ export class HomeComponent implements OnInit {
 
   public registrations:Registration[]=[];
 
+  public isLoading:boolean=false;
+  public isError:boolean=false;
+
   constructor(private registrationService:RegistrationService) { }
 
   private loadData(){
-    this.registrationService.getRegistrations().subscribe((response)=>{
-      this.registrations=response;
-      })
+    this.registrationService.getRegistrations().subscribe({
+      next:(response)=>{
+        this.registrations=response;
+        this.isLoading=false;
+      },
+      error:(error)=>{
+        this.isError=true;
+        this.isLoading=false;
+      }
+    });
   }
 
   ngOnInit(): void {

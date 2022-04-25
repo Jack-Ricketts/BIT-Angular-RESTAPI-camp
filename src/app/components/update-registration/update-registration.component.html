@@ -1,0 +1,56 @@
+<div class="card">
+    <div class="card-header">Editing <b>{{ registration.fName }}</b></div>
+    <div class="card-body">
+        <div *ngIf="!isError && isData && !isLoaded">
+
+            <form action="" (ngSubmit)="onSubmit()" #f="ngForm">
+                <div class="mb-3">
+                    <label for="" class="form-label">First name</label>
+                    <input type="text" id="" class="form-control" ngModel name="fName" required minlength="3" maxlength="15" [(ngModel)]="registration.fName">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Last name</label>
+                    <input type="text" id="" class="form-control" ngModel name="lName" required minlength="3" maxlength="15" [(ngModel)]="registration.lName">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Date of birth</label >
+                    <input type="number" id="" class="form-control"ngModel name="birthday" required AgeValidator [(ngModel)]="registration.birthday">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Gender</label><br>
+                    <input type="radio" id="male" ngModel name="gender" value="Male" [(ngModel)]="registration.gender">
+                    <label for="male">Male</label> &nbsp;
+                    <input type="radio" id="female" ngModel name="gender" value="Female" [(ngModel)]="registration.gender">
+                    <label for="female">Female</label>
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Email</label>
+                    <input type="text" id="" class="form-control" ngModel name="email" required email [(ngModel)]="registration.email">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Phone</label>
+                    <input type="text" id="" class="form-control" ngModel name="phone" placeholder="+37061234567" required minlength="10" maxlength="12" [(ngModel)]="registration.phone">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Grade</label><br>
+                    <select ngModel name="grade" id="grade" required [(ngModel)]="registration.grade">
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-success" [disabled]="!f.valid">Register</button>
+            </form>
+        </div>
+        <div class="card" *ngIf="isError">
+            <div class="card-body">
+                <div class="alert alert-danger">Unable to save data</div>
+            </div>
+        </div>
+    </div>
+</div>

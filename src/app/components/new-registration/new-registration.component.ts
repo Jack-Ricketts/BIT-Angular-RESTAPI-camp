@@ -28,7 +28,7 @@ export class NewRegistrationComponent implements OnInit {
       fData.grade,
     );
     this.registrationService.addRegistration(registration).subscribe((response)=>{
-      this.router.navigate(['/'])
-    })
+      this.router.navigate(["/"]);
+    });
   }
 }

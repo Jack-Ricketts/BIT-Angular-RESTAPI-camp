@@ -2,7 +2,7 @@
     <div class="card-header">
         List of kids
     </div>
-    <div class="card-body">
+    <div class="card-body" *ngIf="!isLoading && !isError">
         <div class="table">
             <thead>
                 <tr>
@@ -25,10 +25,21 @@
                     <td>{{ registration.phone }}</td>
                     <td>{{ registration.grade }}</td>
                     <td>
+                        <a class="btn btn-success" [routerLink]="['/update',registration.id]" >Edit</a>&nbsp;
                         <button class="btn btn-danger" (click)="deleteRegistration(registration.id)">Delete</button>
                     </td>
                 </tr>
             </tbody>
+        </div>
+    </div>
+    <div class="card" *ngIf="isLoading">
+        <div class="card-body">
+            <div class="alert alert-info">Loading.</div>
+        </div>
+    </div>
+    <div class="card" *ngIf="isError">
+        <div class="card-body">
+            <div class="alert alert-danger">Unable to load data.</div>
         </div>
     </div>
 </div>

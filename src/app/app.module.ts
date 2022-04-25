@@ -9,6 +9,7 @@ import { HomeComponent } from './components/home/home.component';
 import { NewRegistrationComponent } from './components/new-registration/new-registration.component';
 import { AgeValidatorDirective } from './directives/age-validator.directive';
 import { HttpClientModule } from '@angular/common/http';
+import { UpdateRegistrationComponent } from './components/update-registration/update-registration.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
     NavigationComponent,
     HomeComponent,
     NewRegistrationComponent,
-    AgeValidatorDirective
+    AgeValidatorDirective,
+    UpdateRegistrationComponent
   ],
   imports: [
     BrowserModule,
