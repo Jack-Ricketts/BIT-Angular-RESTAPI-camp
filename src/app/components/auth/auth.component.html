@@ -13,7 +13,7 @@
                     <input type="password" ngModel name="password" id="" class="form-control" required minlength="6">
                 </div>
                 <div>
-                    <button type="submit" class="btn btn-success">Register</button>
+                    <button type="submit" class="btn btn-success" [disabled]="!f.valid">Register</button>
                 </div>
             </form>
            </div>
