@@ -25,12 +25,16 @@
                     <td>{{ registration.phone }}</td>
                     <td>{{ registration.grade }}</td>
                     <td>
-                        <a class="btn btn-success" [routerLink]="['/update',registration.id]" >Edit</a>&nbsp;
-                        <button class="btn btn-danger" (click)="deleteRegistration(registration.id)">Delete</button>
+                        <div *ngIf="isLoggedin">
+                            <a class="btn btn-success" [routerLink]="['/update',registration.id]" >Edit</a>&nbsp;
+                            <button class="btn btn-danger" (click)="deleteRegistration(registration.id)">Delete</button>
+                        </div>
                     </td>
                 </tr>
             </tbody>
         </div>
+        <div *ngIf="!isLoggedin">In order to edit you have to <a routerLink="/login">log in</a>.</div>
+        <div *ngIf="isLoggedin">Logged in as: {{ user?.email }}. <a class="btn btn-primary" (click)="onLogout()" >Log out</a></div>
     </div>
     <div class="card" *ngIf="isLoading">
         <div class="card-body">
