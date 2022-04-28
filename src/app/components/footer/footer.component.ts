@@ -4,11 +4,11 @@ import { AuthResponseData } from 'src/app/models/authResponseData';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
-  selector: 'app-navigation',
-  templateUrl: './navigation.component.html',
-  styleUrls: ['./navigation.component.css']
+  selector: 'app-footer',
+  templateUrl: './footer.component.html',
+  styleUrls: ['./footer.component.css']
 })
-export class NavigationComponent implements OnInit {
+export class FooterComponent implements OnInit {
 
   public isLoggedin=false;
   public user?:AuthResponseData;

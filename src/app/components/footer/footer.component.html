@@ -1,0 +1,10 @@
+<footer class="bg-light text-center text-lg-start fixed-bottom">
+    <div class="p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+        <div *ngIf="isLoggedin">
+            Welcome to Junior Scouts system.
+        </div>
+        <div *ngIf="!isLoggedin">
+            You have to be logged in if you want to register or edit the list of kids.
+        </div>
+    </div>
+</footer>

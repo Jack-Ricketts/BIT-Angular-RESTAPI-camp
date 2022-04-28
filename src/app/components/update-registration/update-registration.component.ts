@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Registration } from 'src/app/models/registration';
+import { AuthService } from 'src/app/services/auth.service';
 import { RegistrationService } from 'src/app/services/registration.service';
 
 @Component({
@@ -16,14 +17,24 @@ export class UpdateRegistrationComponent implements OnInit {
   public isError:boolean=false;
   public isLoaded:boolean=false;
 
-  constructor(private registrationService:RegistrationService, private router:Router, private route:ActivatedRoute) {
+  constructor(private registrationService:RegistrationService, private router:Router, private route:ActivatedRoute, private auth:AuthService) {
     this.id=this.route.snapshot.params['id'];
   }
 
   ngOnInit(): void {
-    this.registrationService.getRegistration(this.id).subscribe((response)=>{
-      this.registration=response;
-      this.isData=true;
+    if (!this.auth.isLoggedIn){
+      this.router.navigate(['/login'])
+    }
+    this.registrationService.getRegistration(this.id).subscribe({
+      next: (response)=>{
+        this.registration=response;
+        this.isData=true;
+        this.isLoaded=false;
+      },
+      error: (error)=>{
+        this.isLoaded=false;
+        this.isError=true;
+      }
     })
   }
 
