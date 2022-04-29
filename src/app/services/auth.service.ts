@@ -24,7 +24,9 @@ export class AuthService {
     }).pipe(  tap(  (response)=>{
       this.isLoggedIn=true;
       this.user=response;
+      this.user.expires=new Date().getTime()+ +response.expiresIn*1000;
       this.userUpdated.emit();
+      localStorage.setItem('user', JSON.stringify(this.user));
     }));
   }
 
@@ -59,6 +61,7 @@ export class AuthService {
   public logout(){
     this.isLoggedIn=false;
     this.user=undefined;
+    localStorage.removeItem('user');
     this.userUpdated.emit();
   }
 }

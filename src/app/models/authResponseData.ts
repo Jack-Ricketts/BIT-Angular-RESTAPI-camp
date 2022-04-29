@@ -1,5 +1,7 @@
+import { Data } from "@angular/router";
+
 export class AuthResponseData{
-    constructor(
+    constructor (
         public kind:String,
         public idToken:String,
         public email:String,
