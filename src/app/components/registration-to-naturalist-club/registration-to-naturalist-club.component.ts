@@ -41,7 +41,7 @@ export class RegistrationToNaturalistClubComponent implements OnInit {
   }
 
   removeAllergy(){
-    (<FormArray>this.naturalistForm.get('allergy')).controls.pop();
+    (<FormArray>this.naturalistForm.get('allergy')).removeAt(-1);
   }
   get allergies(){
     return (<FormArray>this.naturalistForm.get('allergy')).controls;
