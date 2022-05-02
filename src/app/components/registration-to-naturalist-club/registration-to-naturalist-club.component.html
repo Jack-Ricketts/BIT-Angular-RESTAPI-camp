@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card mb-5">
     <div class="card-header">Register to a naturalist club</div>
     <div class="card-body">
         <form [formGroup]="naturalistForm" (ngSubmit)="onSubmit()">
@@ -22,7 +22,17 @@
                 <input type="number" class="form-control" formControlName="grade">
                 <span class="help-block" *ngIf="!naturalistForm.get('grade')?.valid && naturalistForm.get('grade')?.touched">Must be bewtween 6th and 12th grade</span>
             </div>
-            <button type="submit" [disabled]="!naturalistForm.valid" class="btn btn-success" >Pridėti</button>
+            <hr>
+            <h4>Allergies</h4>
+            <button type="button" class="btn btn-success mb-3" (click)="addAllergy()" >Add allergy</button>
+            <div formArrayName="allergy">
+                <div class="mb-3 mt-3" *ngFor="let allergyItem of allergies; let i = index">
+                    <input type="text" class="form-control" [formControlName]="i">
+                </div>
+                <button type="submit" class="btn btn-danger" (click)="removeAllergy()">Remove</button>
+            </div>
+            <hr>
+            <button type="submit" [disabled]="!naturalistForm.valid" class="btn btn-success" >Add</button>
         </form>
     </div>
     
