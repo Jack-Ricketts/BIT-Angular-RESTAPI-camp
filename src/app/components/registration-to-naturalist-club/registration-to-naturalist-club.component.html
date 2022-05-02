@@ -1,0 +1,29 @@
+<div class="card">
+    <div class="card-header">Register to a naturalist club</div>
+    <div class="card-body">
+        <form [formGroup]="naturalistForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+                <label class="form-label">First name:</label>
+                <input type="text" formControlName="name" class="form-control" >
+                <span class="help-block" *ngIf="!naturalistForm.get('name')?.valid && naturalistForm.get('name')?.touched">First name cannot be longer than 16 symbols</span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Last name:</label>
+                <input type="text" formControlName="surname" class="form-control">
+                <span class="help-block" *ngIf="!naturalistForm.get('surname')?.valid && naturalistForm.get('surname')?.touched">Last name cannot be longer than 16 symbols</span>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Email:</label>
+                <input type="email" formControlName="email" class="form-control">
+                <span class="help-block" *ngIf="!naturalistForm.get('email')?.valid && naturalistForm.get('email')?.touched">Email cannot be empty</span>
+            </div>
+            <div class="mb-3">
+                <label for="" class="form-label">Grade</label>
+                <input type="number" class="form-control" formControlName="grade">
+                <span class="help-block" *ngIf="!naturalistForm.get('grade')?.valid && naturalistForm.get('grade')?.touched">Must be bewtween 6th and 12th grade</span>
+            </div>
+            <button type="submit" [disabled]="!naturalistForm.valid" class="btn btn-success" >Pridėti</button>
+        </form>
+    </div>
+    
+</div>
