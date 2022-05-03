@@ -29,6 +29,7 @@ export class RegistrationService {
       return response;
     }));
   }
+  
   public getRegistrations(){
     return this.http.get<{[key:string]:Registration}>(this.url+"/registrations.json").pipe( map((response)=>{
       const regArray:Registration[]=[];
