@@ -32,8 +32,31 @@
                 <button type="submit" class="btn btn-danger" (click)="removeAllergy()">Remove</button>
             </div>
             <hr>
+            <h4>Taken or ongoing activities</h4>
+            <button type="button" class="btn btn-success mb-3" (click)="addActivity()">Add activities</button>
+            <div formArrayName="activity">
+                <div *ngFor="let activityItem of activities; let i=index">
+                    <div class="row mt-3 mb-3" [formGroup]="toFromGroup(activityItem)" >
+                        <div class="col-md-4">
+                            <label for="" class="form-label">Duration in years</label>
+                            <input type="number" class="form-control" formControlName="duration">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="" class="form-label">Activity</label>
+                            <input type="text" class="form-control" formControlName="type">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="" class="form-label">Activity area</label><br>
+                            <select name="area" id="area" formControlName="area">
+                                <option value="Sports">Sports</option>
+                                <option value="Art">Art</option>
+                                <option value="Science">Science</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <button type="submit" [disabled]="!naturalistForm.valid" class="btn btn-success" >Add</button>
         </form>
     </div>
-    
 </div>

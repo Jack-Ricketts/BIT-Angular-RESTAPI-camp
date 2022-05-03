@@ -18,6 +18,10 @@ export class RegistrationService {
     return this.http.post<{name:string}>(this.url+"/registrations.json",registration);
   }
 
+  public addActivities(activities:Registration){
+    return this.http.post<{name:string}>(this.url+"/activities.json",activities);
+  }
+
   public getRegistration(id:String){
     return this.http.get<Registration>(this.url+"/registrations/"+id+".json").pipe( map((response)=>{
       response.id=id;

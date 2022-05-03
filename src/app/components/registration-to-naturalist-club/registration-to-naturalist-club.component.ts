@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormArray, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { Registration } from 'src/app/models/registration';
+import { RegistrationService } from 'src/app/services/registration.service';
 
 @Component({
   selector: 'app-registration-to-naturalist-club',
@@ -9,13 +12,14 @@ import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 export class RegistrationToNaturalistClubComponent implements OnInit {
   public naturalistForm:FormGroup;
   
-  constructor() { 
+  constructor(private regAct:RegistrationService, private router:Router) { 
     this.naturalistForm=new FormGroup({
       'name':new FormControl(null, [Validators.required, Validators.maxLength(16)]),
       'surname':new FormControl(null, [Validators.required, Validators.maxLength(16)]),
       'email':new FormControl(null, [Validators.required, Validators.email]),
       'grade':new FormControl(null, [Validators.required, this.checkGrade]),
-      'allergy':new FormArray([])
+      'allergy':new FormArray([]),
+      'activity':new FormArray([]),
     });
   }
 
@@ -23,6 +27,9 @@ export class RegistrationToNaturalistClubComponent implements OnInit {
   }
 
   onSubmit(){
+    this.regAct.addActivities(this.naturalistForm.value).subscribe((response)=>{
+      this.router.navigate(["/"]);
+    });
     console.log(this.naturalistForm.value);
     this.naturalistForm.reset();
   }
@@ -40,10 +47,28 @@ export class RegistrationToNaturalistClubComponent implements OnInit {
     (<FormArray>this.naturalistForm.get('allergy')).push(input);
   }
 
+  addActivity(){
+    const activity=new FormGroup({
+      duration: new FormControl(null, Validators.required),
+      type: new FormControl(null, Validators.required),
+      area: new FormControl(null, Validators.required)
+    });
+    (<FormArray>this.naturalistForm.get('activity')).push(activity);
+  }
+
   removeAllergy(){
     (<FormArray>this.naturalistForm.get('allergy')).removeAt(-1);
   }
+
   get allergies(){
     return (<FormArray>this.naturalistForm.get('allergy')).controls;
+  }
+
+  get activities(){
+    return (<FormArray>this.naturalistForm.get('activity')).controls;
+  }
+
+  toFromGroup(element:AbstractControl):FormGroup{
+    return <FormGroup>element;
   }
 }
