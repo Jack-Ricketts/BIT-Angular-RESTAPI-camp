@@ -1,0 +1,31 @@
+<div class="card">
+    <div class="card-header">Current naturalists</div>
+    <div class="card-body">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Grade</th>
+                    <th>Email</th>
+                    <th>Allergies</th>
+                    <th>Activities</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let naturalist of naturalists">
+                    <td>{{naturalist.name }}</td>
+                    <td>{{naturalist.surname }}</td>
+                    <td>{{naturalist.grade }}</td>
+                    <td>{{naturalist.email }}</td>
+                    <td>
+                        <div *ngFor="let allergy of naturalist.allergy">{{allergy}}</div>
+                    </td>
+                    <td>
+                        <div *ngFor="let activity of naturalist.activity">{{activity.duration}}, {{activity.type}}, {{activity.area}}</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

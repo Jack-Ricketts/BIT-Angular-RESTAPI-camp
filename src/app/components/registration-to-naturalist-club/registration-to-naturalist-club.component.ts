@@ -28,7 +28,7 @@ export class RegistrationToNaturalistClubComponent implements OnInit {
 
   onSubmit(){
     this.regAct.addActivities(this.naturalistForm.value).subscribe((response)=>{
-      this.router.navigate(["/"]);
+      this.router.navigate(["/naturalists"]);
     });
     console.log(this.naturalistForm.value);
     this.naturalistForm.reset();

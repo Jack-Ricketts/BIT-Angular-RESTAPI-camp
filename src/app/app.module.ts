@@ -15,6 +15,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ChangePasswordComponent } from './components/change-password/change-password.component';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { RegistrationToNaturalistClubComponent } from './components/registration-to-naturalist-club/registration-to-naturalist-club.component';
+import { NaturalistComponent } from './components/naturalist/naturalist.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { RegistrationToNaturalistClubComponent } from './components/registration
     AuthComponent,
     FooterComponent,
     ChangePasswordComponent,
-    RegistrationToNaturalistClubComponent
+    RegistrationToNaturalistClubComponent,
+    NaturalistComponent
   ],
   imports: [
     BrowserModule,

@@ -20,7 +20,7 @@ export class RegistrationService {
   }
 
   public addActivities(activities:Naturalists){
-    return this.http.post<{name:string}>(this.url+"/activities.json",activities);
+    return this.http.post<{name:string}>(this.url+"/naturalist.json",activities);
   }
 
   public getRegistration(id:String){

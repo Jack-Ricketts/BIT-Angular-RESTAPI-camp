@@ -15,6 +15,9 @@
             <li class="nav-item">
               <a class="nav-link" routerLink="/registration">Naturalist club</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" routerLink="/naturalists">Naturalists</a>
+            </li>
         </ul>
         <div *ngIf="isLoggedin" class="d-flex me-2" >Logged in as: <b>{{ user?.email }}</b> </div>
         <a *ngIf="isLoggedin" class="btn btn-primary d-flex me-3" routerLink="/password">Change password</a>
