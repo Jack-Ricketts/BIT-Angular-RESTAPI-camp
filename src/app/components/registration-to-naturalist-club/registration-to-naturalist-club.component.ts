@@ -1,7 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { AbstractControl, FormArray, FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, FormArray, FormControl, FormGroup, NgForm, ValidationErrors, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { map, Observable } from 'rxjs';
 import { Registration } from 'src/app/models/registration';
+import { NaturalistsService } from 'src/app/services/naturalists.service';
 import { RegistrationService } from 'src/app/services/registration.service';
 
 @Component({
@@ -12,7 +14,7 @@ import { RegistrationService } from 'src/app/services/registration.service';
 export class RegistrationToNaturalistClubComponent implements OnInit {
   public naturalistForm:FormGroup;
   
-  constructor(private regAct:RegistrationService, private router:Router) { 
+  constructor(private regAct:RegistrationService, private router:Router, private natService:NaturalistsService) { 
     this.naturalistForm=new FormGroup({
       'name':new FormControl(null, [Validators.required, Validators.maxLength(16)]),
       'surname':new FormControl(null, [Validators.required, Validators.maxLength(16)]),
@@ -70,5 +72,17 @@ export class RegistrationToNaturalistClubComponent implements OnInit {
 
   toFromGroup(element:AbstractControl):FormGroup{
     return <FormGroup>element;
+  }
+
+  couponInDatabase():AsyncValidatorFn{
+    return (control:AbstractControl):Observable<ValidationErrors|null>=>{
+      return this.natService.isCouponAvailable(control.value).pipe(map((response)=>{
+        if (response==true){
+          return null;
+        }else{
+          return {"Coupon does not exist in DB":true};
+        }
+      }));
+    }
   }
 }

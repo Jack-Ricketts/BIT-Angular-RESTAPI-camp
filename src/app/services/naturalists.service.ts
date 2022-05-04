@@ -27,4 +27,19 @@ export class NaturalistsService {
       return naturalists;
     }))
   }
+
+  public isCouponAvailable(coupon:String){
+    return this.http.get<number|null>(this.url+"/coupons/"+coupon+".json").pipe(
+      map((response)=>{
+        if (response==null){
+          return false;
+        }else{
+          return true;
+        }
+      }));
+  }
+
+  public decreaseCoupons(coupon:string){
+    return this.http.patch(this.url+"/coupons.json", {[coupon]:0});
+  }
 }
